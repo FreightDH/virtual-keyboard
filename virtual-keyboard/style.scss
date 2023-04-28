@@ -24,8 +24,9 @@ body {
 body {
 	color: #fff;
 	line-height: 1;
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	font-size: 14px;
+	font-family: 'Lato';
+  font-weight: 500;
+	font-size: 16px;
 }
 input,
 button,
@@ -67,6 +68,7 @@ h6 {
 body {
   height: 100vh;
   overflow: hidden;
+  user-select: none;
 
   display: flex;
   justify-content: center;
@@ -98,14 +100,14 @@ body {
 
   border-radius: 17.5px;
   
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  transform: perspective(1200px) rotateX(20deg) rotateY(0deg);
-  transition: all 0.1s ease 0s;
+  // perspective: 1200px;
+  // transform-style: preserve-3d;
+  // transform: perspective(1200px) rotateX(20deg) rotateY(0deg);
+  // transition: all 0.1s ease 0s;
 }
 .row {
   display: flex;
-  transform-style: preserve-3d;
+  // transform-style: preserve-3d;
 
   &:not(:first-child) {
     margin: 15px 0px 0px 0px;
@@ -115,9 +117,14 @@ body {
   width: 50px;
   height: 50px;
 
-  flex-shrink: 0;
-  transform: translate3D(0, 0, 30px);
-  transition: all 0.1s ease 0s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // flex-shrink: 0;
+
+  // transform: translate3D(0, 0, 30px);
+  // transition: all 0.1s ease 0s;
+  
   cursor: pointer;
 
   &:not(:first-child) {
@@ -125,13 +132,15 @@ body {
   }
 
   &:hover {
-    transform: translate3D(0, 0, 35px);
+    // transform: translate3D(0, 0, 35px);
   }
 
-  &:active {
-    transform: translate3D(0, 0, 25px);
+  transition: all 0.2s ease 0s;
 
-    border-color: hsl(0, 0%, 85%);
+  &:active {
+    // transform: translate3D(0, 0, 25px);
+
+    border-color: #d9d9d9;
     box-shadow: 
         -5px -5px 10px rgba(255, 255, 255, 0.01), 
         -2px -2px 6px rgba(255, 255, 255, 0.03), 
@@ -172,4 +181,26 @@ body {
 // Space
 .size-7 {
   width: calc(50 * 7.8) + px;
+}
+//------------------------------------------------------------------------
+.arrow-left {
+  span {
+    position: relative;
+    left: 3px;
+    transform: rotate(-90deg);
+  }
+}
+.arrow-down {
+  span {
+    position: relative;
+    top: -3px;
+    transform: rotate(180deg);
+  }
+}
+.arrow-right {
+  span {
+    position: relative;
+    right: 3px;
+    transform: rotate(90deg);
+  }
 }
