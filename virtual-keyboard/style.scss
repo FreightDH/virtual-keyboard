@@ -1,0 +1,175 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+:focus,
+:active {
+	outline: none;
+}
+a:focus,
+a:active {
+	outline: none;
+}
+html,
+body {
+	height: 100%;
+	min-width: 320px;
+}
+body {
+	color: #fff;
+	line-height: 1;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-size: 14px;
+}
+input,
+button,
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+}
+button {
+	cursor: pointer;
+	color: inherit;
+	background-color: inherit;
+}
+a {
+	color: inherit;
+}
+a:link,
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+ul li {
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	font-size: inherit;
+}
+//------------------------------------------------------------------------
+body {
+  height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #0a0a0a;
+}
+
+.keyboard, 
+.key {
+  border: 2px solid rgba(64, 64, 64, 0.2);
+  border-radius: 7.5px;
+
+	background-color: #141414;
+  box-shadow: 
+      -5px -5px 10px rgba(255, 255, 255, 0.01), 
+      -2px -2px 6px rgba(255, 255, 255, 0.03), 
+      2px 2px 5px rgba(0, 0, 0, 0.3), 
+      5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.keyboard {
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 17.5px;
+  
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transform: perspective(1200px) rotateX(20deg) rotateY(0deg);
+  transition: all 0.1s ease 0s;
+}
+.row {
+  display: flex;
+  transform-style: preserve-3d;
+
+  &:not(:first-child) {
+    margin: 15px 0px 0px 0px;
+  }
+}
+.key {
+  width: 50px;
+  height: 50px;
+
+  flex-shrink: 0;
+  transform: translate3D(0, 0, 30px);
+  transition: all 0.1s ease 0s;
+  cursor: pointer;
+
+  &:not(:first-child) {
+    margin: 0px 0px 0px 15px;
+  }
+
+  &:hover {
+    transform: translate3D(0, 0, 35px);
+  }
+
+  &:active {
+    transform: translate3D(0, 0, 25px);
+
+    border-color: hsl(0, 0%, 85%);
+    box-shadow: 
+        -5px -5px 10px rgba(255, 255, 255, 0.01), 
+        -2px -2px 6px rgba(255, 255, 255, 0.03), 
+        2px 2px 5px rgba(0, 0, 0, 0.3), 
+        5px 5px 10px rgba(0, 0, 0, 0.3), 
+        0px 2px 8px #d9d9d9, 
+        0px 5px 20px #d9d9d9;
+  }
+}
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+// CTRL, Option, l-Command
+.size-2 {
+  width: calc(50 * 1.3) + px;
+}
+
+// TAB, Backslash, r-Command, FN
+.size-3 {
+  width: calc(50 * 1.65) + px;
+}
+
+// CapsLock, r-Shift
+.size-4 {
+  width: calc(50 * 1.98) + px;
+}
+
+// Backspace
+.size-5 {
+  width: calc(50 * 2.3) + px;
+}
+
+// l-Shift, Return
+.size-6 {
+  width: calc(50 * 2.6) + px;
+}
+
+// Space
+.size-7 {
+  width: calc(50 * 7.8) + px;
+}
