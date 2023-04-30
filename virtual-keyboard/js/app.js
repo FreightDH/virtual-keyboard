@@ -39,6 +39,17 @@ document.addEventListener('keydown', function (event) {
   
   key.classList.add('active');
 
+  // Adding tab indent 
+  if (keyName === 'Tab') {
+    let text = textarea.value;
+    let start = textarea.selectionStart;
+    let end = textarea.selectionEnd;
+
+    textarea.value = text.slice(0, start) + '\t' + text.slice(end);
+    textarea.selectionStart = textarea.selectionEnd = start + 1;
+    event.preventDefault();
+  }
+
   // Dynamic language change 
   if (rus.includes(letter) && languageKey.textContent === 'EN') {
     changeLanguage();
@@ -76,6 +87,42 @@ document.addEventListener('keyup', function (event) {
 //     pressed.delete(event.code);
 //   });
 // }
+
+// function getCaretPosition(inputField) {
+//   inputField.focus();
+
+//   if (inputField.selectionStart) return inputField.selectionStart;
+//   else if (document.selection) {
+//     let sel = document.selection.createRange();
+//     let clone = sel.duplicate();
+//     sel.collapse(true);
+//     clone.moveToElementText(inputField);
+//     clone.setEndPoint('EndToEnd', sel);
+//     return clone.text.length;
+//   }
+//   return 0;
+// } 
+
+
+// function(event) {
+//   if (e.keyCode === 9) { // была нажата клавиша TAB
+
+//       // получим позицию каретки
+//       var val = textarea.value,
+//           start = textarea.selectionStart,
+//           end = textarea.selectionEnd;
+
+//       // установим значение textarea в: текст до каретки + tab + текст после каретки
+//       textarea.value = val.substring(0, start) + '\t' + val.substring(end);
+
+//       // переместим каретку
+//       textarea.selectionStart = textarea.selectionEnd = start + 1;
+
+//       // предотвратим потерю фокуса
+//       return false;
+
+//   }
+// };
 
 function changeLanguage() {
   if (languageKey.textContent === 'EN') {
