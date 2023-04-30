@@ -39,16 +39,51 @@ document.addEventListener('keyup', function (event) {
   }
 });
 
-languageKey.addEventListener('click', function (event) {
+function runOnKeys(callback, ...codes) {
+  let pressed = new Set();
+
+  document.addEventListener('keydown', function (event) {
+    pressed.add(event.code);
+
+    for (let code of codes) {
+      if (!pressed.has(code)) {
+        return;
+      }
+    }
+
+    pressed.clear();
+
+    callback();
+  });
+
+  document.addEventListener('keyup', function (event) {
+    pressed.delete(event.code);
+  });
+}
+
+function changeLanguage() {
   if (languageKey.textContent === 'EN') {
-    inputKeys.forEach( (key, index) => {
+    inputKeys.forEach((key, index) => {
       key.textContent = letters['ru'][index].toUpperCase();
     });
     languageKey.textContent = 'RU';
   } else {
-    inputKeys.forEach( (key, index) => {
+    inputKeys.forEach((key, index) => {
       key.textContent = letters['en'][index].toUpperCase();
     });
     languageKey.textContent = 'EN';
   }
-});
+  localStorage.setItem('language', languageKey.textContent);
+}
+
+languageKey.addEventListener('click', changeLanguage);
+runOnKeys(changeLanguage, 'MetaLeft', 'Space');
+
+function getLocalStorage() {
+  const currentLanguage = localStorage.getItem('language');
+	if (currentLanguage) { 
+    if (currentLanguage === 'RU') changeLanguage();
+	}
+}
+
+window.addEventListener('load', getLocalStorage);
