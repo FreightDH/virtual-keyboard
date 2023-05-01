@@ -1,11 +1,11 @@
 export function runOnKeys(callback, ...codes) {
-  let pressedKeys = new Set();
+  const pressedKeys = new Set();
 
-  document.addEventListener('keydown', function (event) {
+  document.addEventListener('keydown', (event) => {
     pressedKeys.add(event.code);
 
-    for (let code of codes) {
-      if (!pressedKeys.has(code)) {
+    for (let i = 0; i < codes.length; i += 1) {
+      if (!pressedKeys.has(codes[i])) {
         return;
       }
     }
@@ -14,10 +14,13 @@ export function runOnKeys(callback, ...codes) {
     callback();
   });
 
-  document.addEventListener('keyup', function (event) {
+  document.addEventListener('keyup', (event) => {
     pressedKeys.delete(event.code);
   });
 }
 
 const textarea = document.querySelector('.textarea__input');
-export const getCaretPosition = () => { return { "start": textarea.selectionStart, "end": textarea.selectionEnd } }
+export const getCaretPosition = () => ({
+  start: textarea.selectionStart,
+  end: textarea.selectionEnd,
+});

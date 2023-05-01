@@ -1,10 +1,10 @@
-import { getCaretPosition } from "./functions.js";
+import { getCaretPosition } from './functions.js';
 
 const textarea = document.querySelector('.textarea__input');
 const keys = document.querySelectorAll('.key');
 
-keys.forEach(key => {
-  key.addEventListener('click', function (event) {
+keys.forEach((key) => {
+  key.addEventListener('click', () => {
     const text = textarea.value;
     const caretPosition = getCaretPosition();
     const capsKey = document.querySelector('.key--service[data-code="CapsLock"');
@@ -12,16 +12,16 @@ keys.forEach(key => {
     const rightShiftKey = document.querySelector('.key--service[data-code="ShiftRight"');
 
     switch (key.dataset.code) {
-      case 'CapsLock': 
-      case 'ShiftLeft': 
+      case 'CapsLock':
+      case 'ShiftLeft':
       case 'ShiftRight': key.classList.toggle('active'); break;
       case 'Space': {
-        textarea.value = text.slice(0, caretPosition.start) + ' ' + text.slice(caretPosition.end);
+        textarea.value = `${text.slice(0, caretPosition.start)} ${text.slice(caretPosition.end)}`;
         textarea.selectionStart = textarea.selectionEnd = caretPosition.start + 1;
         break;
       }
       case 'Enter': {
-        textarea.value = text.slice(0, caretPosition.start) + '\n' + text.slice(caretPosition.end);
+        textarea.value = `${text.slice(0, caretPosition.start)}\n${text.slice(caretPosition.end)}`;
         textarea.selectionStart = textarea.selectionEnd = caretPosition.start + 1;
         break;
       }
@@ -37,7 +37,7 @@ keys.forEach(key => {
         break;
       }
       case 'Tab': {
-        textarea.value = text.slice(0, caretPosition.start) + '\t' + text.slice(caretPosition.end);
+        textarea.value = `${text.slice(0, caretPosition.start)}\t${text.slice(caretPosition.end)}`;
         textarea.selectionStart = textarea.selectionEnd = caretPosition.start + 1;
         break;
       }
@@ -47,7 +47,7 @@ keys.forEach(key => {
           textarea.selectionEnd = caretPosition.start;
         } else {
           textarea.selectionStart = textarea.selectionEnd = 0;
-        } 
+        }
         break;
       }
       case 'ArrowLeft': {
@@ -56,7 +56,7 @@ keys.forEach(key => {
         } else {
           textarea.selectionStart = textarea.selectionEnd = caretPosition.start - 1;
         }
-        break; 
+        break;
       }
       case 'ArrowDown': {
         if (leftShiftKey.classList.contains('active') || rightShiftKey.classList.contains('active')) {
@@ -64,7 +64,7 @@ keys.forEach(key => {
           textarea.selectionEnd = text.length;
         } else {
           textarea.selectionStart = textarea.selectionEnd = text.length;
-        } 
+        }
         break;
       }
       case 'ArrowRight': {
@@ -80,7 +80,7 @@ keys.forEach(key => {
     if (!key.classList.contains('key--service')) {
       // Selecting a symbol depending on the capslock and shift
       const keyValue = key.textContent;
-      
+
       let inputSymbol = capsKey.classList.contains('active') ? keyValue.slice(0, 1) : keyValue.slice(0, 1).toLowerCase();
       if (leftShiftKey.classList.contains('active') || rightShiftKey.classList.contains('active')) {
         inputSymbol = keyValue.slice(-1);
@@ -89,7 +89,7 @@ keys.forEach(key => {
       textarea.value = text.slice(0, caretPosition.start) + inputSymbol + text.slice(caretPosition.end);
       textarea.selectionStart = textarea.selectionEnd = caretPosition.start + 1;
     }
-  
+
     textarea.focus();
-  }); 
+  });
 });
