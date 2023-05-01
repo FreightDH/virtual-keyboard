@@ -1,16 +1,4 @@
-// function generateHTML() {
-//   const textAreaWrapper = document.createElement('div');
-//   const textAreaInput = document.createElement('textarea');\
-//   textAreaWrapper.classList.add('textarea');
-//   textAreaInput.classList.add('textarea__input');
-//   textAreaWrapper.append(textAreaInput);
-//   document.body.append(textAreaWrapper);
-
-//   const keyboard = document.createElement('div');
-//   keyboard.classList.add('keyboard');
-// }
-
-// generateHTML();
+import './files/generateHtml.js';
 import './files/language.js';
 import './files/mouseInput.js';
 import './files/localStorage.js';
