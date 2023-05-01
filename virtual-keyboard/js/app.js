@@ -12,50 +12,46 @@
 // }
 
 // generateHTML();
+import "./files/language.js";
+import "./files/mouseInput.js";
+import "./files/localStorage.js";
+import { getCaretPosition } from "./files/functions.js";
+
 const textarea = document.querySelector('.textarea__input');
-const keyboard = document.querySelector('.keyboard');
 const keys = document.querySelectorAll('.key');
-const inputKeys = document.querySelectorAll('.key--input');
-const languageKey = document.querySelector('.change-language');
 
-const letters = {
-  "en": ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[ {', '] }', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', '; :', '\' "', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ', <', '. >', '/ ?'],
-  "ru": ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/ ?']
-}
-
-const rusLower = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
-const rusUpper = rusLower.toUpperCase();
-const enLower = 'abcdefghijklmnopqrstuvwxyz';
-const enUpper = enLower.toUpperCase();
-const rus = rusLower + rusUpper;
-const en = enLower + enUpper;
-
-//! TODO: fix shift+cmd+arrow active state
-
+// Input from real keyboard
 document.addEventListener('keydown', function (event) {
   const keyName = event.code;
-  const letter = event.key;
   const key = Array.from(keys).find(element => element.dataset.code === keyName);
-  
-  key.classList.add('active');
+  const text = textarea.value;
+  const caretPosition = getCaretPosition();
 
   // Adding tab indent 
   if (keyName === 'Tab') {
-    let text = textarea.value;
-    let start = textarea.selectionStart;
-    let end = textarea.selectionEnd;
-
-    textarea.value = text.slice(0, start) + '\t' + text.slice(end);
-    textarea.selectionStart = textarea.selectionEnd = start + 1;
+    textarea.value = text.slice(0, caretPosition.start) + '\t' + text.slice(caretPosition.end);
+    textarea.selectionStart = textarea.selectionEnd = caretPosition.start + 1;
     event.preventDefault();
   }
 
-  // Dynamic language change 
-  if (rus.includes(letter) && languageKey.textContent === 'EN') {
-    changeLanguage();
-  } else if (en.includes(letter) && languageKey.textContent === 'RU') {
-    changeLanguage();
+  if (!key.classList.contains('key--service')) {
+    // Selecting a symbol depending on the capslock and shift
+    const keyValue = key.textContent;
+    const capsKey = document.querySelector('.key--service[data-code="CapsLock"');
+    const leftShiftKey = document.querySelector('.key--service[data-code="ShiftLeft"');
+    const rightShiftKey = document.querySelector('.key--service[data-code="ShiftRight"');
+
+    let inputSymbol = capsKey.classList.contains('active') ? keyValue.slice(0, 1) : keyValue.slice(0, 1).toLowerCase();
+    if (leftShiftKey.classList.contains('active') || rightShiftKey.classList.contains('active')) {
+      inputSymbol = keyValue.slice(-1);
+    }
+
+    textarea.value = text.slice(0, caretPosition.start) + inputSymbol + text.slice(caretPosition.end);
+    textarea.selectionStart = textarea.selectionEnd = caretPosition.start + 1;
+    event.preventDefault();
   }
+
+  key.classList.add('active');
 });
 
 document.addEventListener('keyup', function (event) {
@@ -65,88 +61,3 @@ document.addEventListener('keyup', function (event) {
     key.classList.remove('active');
   }
 });
-
-// function runOnKeys(callback, ...codes) {
-//   let pressed = new Set();
-
-//   document.addEventListener('keydown', function (event) {
-//     pressed.add(event.code);
-
-//     for (let code of codes) {
-//       if (!pressed.has(code)) {
-//         return;
-//       }
-//     }
-
-//     pressed.clear();
-
-//     callback();
-//   });
-
-//   document.addEventListener('keyup', function (event) {
-//     pressed.delete(event.code);
-//   });
-// }
-
-// function getCaretPosition(inputField) {
-//   inputField.focus();
-
-//   if (inputField.selectionStart) return inputField.selectionStart;
-//   else if (document.selection) {
-//     let sel = document.selection.createRange();
-//     let clone = sel.duplicate();
-//     sel.collapse(true);
-//     clone.moveToElementText(inputField);
-//     clone.setEndPoint('EndToEnd', sel);
-//     return clone.text.length;
-//   }
-//   return 0;
-// } 
-
-
-// function(event) {
-//   if (e.keyCode === 9) { // была нажата клавиша TAB
-
-//       // получим позицию каретки
-//       var val = textarea.value,
-//           start = textarea.selectionStart,
-//           end = textarea.selectionEnd;
-
-//       // установим значение textarea в: текст до каретки + tab + текст после каретки
-//       textarea.value = val.substring(0, start) + '\t' + val.substring(end);
-
-//       // переместим каретку
-//       textarea.selectionStart = textarea.selectionEnd = start + 1;
-
-//       // предотвратим потерю фокуса
-//       return false;
-
-//   }
-// };
-
-function changeLanguage() {
-  if (languageKey.textContent === 'EN') {
-    inputKeys.forEach((key, index) => {
-      key.textContent = letters['ru'][index].toUpperCase();
-    });
-    languageKey.textContent = 'RU';
-  } else {
-    inputKeys.forEach((key, index) => {
-      key.textContent = letters['en'][index].toUpperCase();
-    });
-    languageKey.textContent = 'EN';
-  }
-  localStorage.setItem('language', languageKey.textContent);
-}
-
-languageKey.addEventListener('click', changeLanguage);
-// runOnKeys(changeLanguage, 'MetaLeft', 'Space');
-
-function getLocalStorage() {
-  const currentLanguage = localStorage.getItem('language');
-	if (currentLanguage) { 
-    if (currentLanguage === 'RU') changeLanguage();
-	}
-}
-
-window.addEventListener('load', getLocalStorage);
