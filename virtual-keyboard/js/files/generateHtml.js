@@ -12,7 +12,7 @@ const dataCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'
 
   const keyboard = document.createElement('div');
   keyboard.classList.add('keyboard');
-  
+
   const keys = [];
 
   for (let i = 0; i < 67; i += 1) {
@@ -26,7 +26,7 @@ const dataCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'
     } else {
       key.textContent = labels[i];
     }
-    
+
     switch (true) {
       case i === 13: key.classList.add('key--service'); key.classList.add('size-5'); break;
       case i === 14: key.classList.add('key--service'); break;
@@ -49,6 +49,7 @@ const dataCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'
       case i === 64: key.classList.add('key--service'); key.classList.add('arrow-left'); break;
       case i === 65: key.classList.add('key--service'); key.classList.add('arrow-down'); break;
       case i === 66: key.classList.add('key--service'); key.classList.add('arrow-right'); break;
+      default: break;
     }
 
     keys.push(key);
@@ -59,35 +60,36 @@ const dataCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'
     row.classList.add('row');
     switch (i) {
       case 0: {
-        for (let j = 0; j < 15; j+= 1) {
-          row.append(keys[j])
+        for (let j = 0; j < 15; j += 1) {
+          row.append(keys[j]);
         }
         break;
       }
       case 1: {
-        for (let j = 15; j < 30; j+= 1) {
-          row.append(keys[j])
+        for (let j = 15; j < 30; j += 1) {
+          row.append(keys[j]);
         }
         break;
       }
       case 2: {
-        for (let j = 30; j < 44; j+= 1) {
-          row.append(keys[j])
+        for (let j = 30; j < 44; j += 1) {
+          row.append(keys[j]);
         }
         break;
       }
       case 3: {
-        for (let j = 44; j < 58; j+= 1) {
-          row.append(keys[j])
+        for (let j = 44; j < 58; j += 1) {
+          row.append(keys[j]);
         }
         break;
       }
       case 4: {
-        for (let j = 58; j < 67; j+= 1) {
-          row.append(keys[j])
+        for (let j = 58; j < 67; j += 1) {
+          row.append(keys[j]);
         }
         break;
       }
+      default: break;
     }
     keyboard.append(row);
   }
