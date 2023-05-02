@@ -13,7 +13,7 @@ document.addEventListener('keydown', (event) => {
   const key = Array.from(keys).find((element) => element.dataset.code === keyName);
   const text = textarea.value;
   const caretPosition = getCaretPosition();
-  
+
   // Adding tab indent
   if (keyName === 'Tab') {
     textarea.value = `${text.slice(0, caretPosition.start)}\t${text.slice(caretPosition.end)}`;
