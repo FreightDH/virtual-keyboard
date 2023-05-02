@@ -1,7 +1,7 @@
-const labels = ['` ~', '1 !', '2 @', '3 #', '4 $', '5 %', '6 ^', '7 &', '8 *', '9 (', '0 )', '- _', '= +', '', 'del', 'tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[ {', '] }', '\\ |', 'EN', 'caps', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', '; :', '\' "', '', '', 'shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ', <', '. >', '/ ?', 'shift', '^', '', 'ctrl', 'option', 'cmd', '', 'cmd', 'ctrl', '^', '^', '^'];
-const dataCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace', 'Delete', 'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', '', 'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter', '', 'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ShiftRight', 'ArrowUp', '', 'ControlLeft', 'AltLeft', 'MetaLeft', 'Space', 'MetaRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight']
+const labels = ['` ~', '1 !', '2 @', '3 #', '4 $', '5 %', '6 ^', '7 &', '8 *', '9 (', '0 )', '- _', '= +', 'backspace', 'del', 'tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[ {', '] }', '\\ |', 'EN', 'caps', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', '; :', '\' "', 'enter', '', 'shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ', <', '. >', '/ ?', 'shift', '^', '', 'ctrl', 'option', 'cmd', '', 'cmd', 'ctrl', '^', '^', '^'];
+const dataCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace', 'Delete', 'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', '', 'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter', '', 'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ShiftRight', 'ArrowUp', '', 'ControlLeft', 'AltLeft', 'MetaLeft', 'Space', 'MetaRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
 
-function generateHTML() {
+(() => {
   const textAreaWrapper = document.createElement('div');
   const textAreaInput = document.createElement('textarea');
   textAreaWrapper.classList.add('textarea');
@@ -86,7 +86,6 @@ function generateHTML() {
     keyboard.append(row);
   }
 
-  document.body.insertAdjacentElement('beforeend', keyboard);
-}
-
-generateHTML();
+  textAreaWrapper.insertAdjacentElement('afterend', keyboard);
+  document.body.insertAdjacentElement('afterbegin', textAreaWrapper);
+})();
