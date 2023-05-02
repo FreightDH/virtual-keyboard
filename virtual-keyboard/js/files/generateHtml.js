@@ -19,8 +19,14 @@ const dataCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'
     const key = document.createElement('div');
     key.classList.add('key');
     key.setAttribute('data-code', dataCodes[i]);
-    key.textContent = labels[i];
-
+    if (i > 63 && i < 67) {
+      const span = document.createElement('span');
+      span.textContent = labels[i];
+      key.append(span);
+    } else {
+      key.textContent = labels[i];
+    }
+    
     switch (true) {
       case i === 13: key.classList.add('key--service'); key.classList.add('size-5'); break;
       case i === 14: key.classList.add('key--service'); break;
