@@ -92,6 +92,11 @@ const dataCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'
     keyboard.append(row);
   }
 
+  const promt = document.createElement('div');
+  promt.classList.add('promt');
+  promt.innerHTML = 'Language change: <br> Ctrl + Alt (Windows) <br> Ctrl + Option (macOS) <br> EN / RU button';
+
   textAreaWrapper.insertAdjacentElement('afterend', keyboard);
   document.body.insertAdjacentElement('afterbegin', textAreaWrapper);
+  document.body.insertAdjacentElement('afterbegin', promt);
 })();
