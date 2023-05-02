@@ -21,7 +21,6 @@ export default function changeLanguage() {
     languageKey.textContent = 'EN';
   }
   localStorage.setItem('language', languageKey.textContent);
-  console.log(inputKeys);
 }
 
 runOnKeys(changeLanguage, 'ControlLeft', 'AltLeft');
