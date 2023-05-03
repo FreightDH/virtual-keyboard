@@ -1,0 +1,198 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+html,
+body {
+  height: 100%;
+  min-width: 320px;
+}
+
+body {
+  color: #fff;
+  line-height: 1;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #0a0a0a;
+}
+
+.textarea__input,
+.keyboard,
+.key {
+  border: 2px solid rgba(64, 64, 64, 0.2);
+  border-radius: 7.5px;
+  background-color: #141414;
+  box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.01), -2px -2px 6px rgba(255, 255, 255, 0.03), 2px 2px 5px rgba(0, 0, 0, 0.3), 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.textarea {
+  margin: 0px 0px 30px 0px;
+}
+.textarea__input {
+  width: 1059px;
+  height: 200px;
+  padding: 10px;
+  display: block;
+  resize: none;
+  border-radius: 17.5px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.keyboard {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 17.5px;
+}
+
+.row {
+  display: flex;
+}
+.row:not(:first-child) {
+  margin: 15px 0px 0px 0px;
+}
+
+.key {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.1s ease 0s;
+}
+.key:not(:first-child) {
+  margin: 0px 0px 0px 15px;
+}
+.key:active, .key.active {
+  border-color: #d9d9d9;
+  box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.01), -2px -2px 6px rgba(255, 255, 255, 0.03), 2px 2px 5px rgba(0, 0, 0, 0.3), 5px 5px 10px rgba(0, 0, 0, 0.3), 0px 2px 8px #d9d9d9, 0px 5px 20px #d9d9d9;
+}
+
+.promt {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+
+.size-2 {
+  width: 65px;
+}
+
+.size-3 {
+  width: 82.5px;
+}
+
+.size-4 {
+  width: 99px;
+}
+
+.size-5 {
+  width: 115px;
+}
+
+.size-6 {
+  width: 130px;
+}
+
+.size-7 {
+  width: 390px;
+}
+
+.arrow-left span {
+  position: relative;
+  left: 3px;
+  transform: rotate(-90deg);
+}
+
+.arrow-down span {
+  position: relative;
+  top: -3px;
+  transform: rotate(180deg);
+}
+
+.arrow-right span {
+  position: relative;
+  right: 3px;
+  transform: rotate(90deg);
+}
