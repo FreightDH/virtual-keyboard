@@ -121,10 +121,15 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 17.5px;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transform: perspective(1200px) rotateX(20deg) rotateY(0deg);
+  transition: all 0.1s ease 0s;
 }
 
 .row {
   display: flex;
+  transform-style: preserve-3d;
 }
 .row:not(:first-child) {
   margin: 15px 0px 0px 0px;
@@ -136,13 +141,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
+  transform: translate3D(0, 0, 30px);
+  transition: all 0.1s ease 0s;
   cursor: pointer;
   transition: all 0.1s ease 0s;
 }
 .key:not(:first-child) {
   margin: 0px 0px 0px 15px;
 }
+.key:hover {
+  transform: translate3D(0, 0, 35px);
+}
 .key:active, .key.active {
+  transform: translate3D(0, 0, 25px);
   border-color: #d9d9d9;
   box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.01), -2px -2px 6px rgba(255, 255, 255, 0.03), 2px 2px 5px rgba(0, 0, 0, 0.3), 5px 5px 10px rgba(0, 0, 0, 0.3), 0px 2px 8px #d9d9d9, 0px 5px 20px #d9d9d9;
 }
